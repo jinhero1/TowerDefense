@@ -20,11 +20,6 @@ namespace Library
                     value = CreateService(type);
                     services.Add(type, value);
                 }
-                else if (value == null)
-                {
-                    value = CreateService(type);
-                    services[type] = value;
-                }
 
                 return (T)value;
             }
