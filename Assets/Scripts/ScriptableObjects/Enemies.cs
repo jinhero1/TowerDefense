@@ -19,7 +19,7 @@ namespace TowerDefense
     [CreateAssetMenu(menuName = "Scriptable Object/Create Enemies")]
     public class Enemies : ScriptableObject
     {
-        [SerializeField] private List<EnemyConfiguration> enemies;
+        [SerializeField] private EnemyConfiguration[] enemies;
 
         public EnemyConfiguration GetConfiguration(int pIndex)
         {

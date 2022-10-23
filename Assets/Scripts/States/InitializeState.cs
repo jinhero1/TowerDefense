@@ -4,8 +4,8 @@ namespace TowerDefense
     {
         public override void OnEnter()
         {
-            CommonServices.GameMapManager.Load();
-            CommonServices.GameAssetManager.Load();
+            GameServices.GameMapManager.Load();
+            GameServices.GameAssetManager.Load();
 
             Next();
         }
