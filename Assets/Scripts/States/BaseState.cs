@@ -5,8 +5,7 @@ namespace TowerDefense
 {
     public abstract class BaseState : MonoBehaviour
     {
-        [SerializeField]
-        protected UnityEvent onNext;
+        [SerializeField] protected UnityEvent onNext;
 
         protected void Next()
         {

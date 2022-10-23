@@ -7,9 +7,9 @@ namespace TowerDefense
     {
         [SerializeField] private Vector2Int[] points;
 
-        public Vector2 GetPoint(int pIndex)
+        public Vector3Int GetPoint(int pIndex)
         {
-            return points[pIndex];
+            return (Vector3Int)points[pIndex];
         }
     }
 }
