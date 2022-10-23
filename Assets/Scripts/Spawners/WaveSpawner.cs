@@ -8,8 +8,10 @@ namespace TowerDefense
 
         public void NextWave()
         {
-            EnemyConfiguration configuration = CommonServices.GameAssetManager.Enemies.GetConfiguration(0);
-            soliderPool = new SoliderPool(configuration.Prefab);
+            int enemyIndex = (int)EnemyType.Warrior;
+
+            EnemyConfiguration configuration = CommonServices.GameAssetManager.Enemies.GetConfiguration(enemyIndex);
+            soliderPool = new SoliderPool(configuration);
 
             soliderPool.Rent();
         }

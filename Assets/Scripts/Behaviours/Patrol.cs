@@ -4,7 +4,13 @@ namespace TowerDefense
 {
     public class Patrol : MonoBehaviour
     {
+        private int speed;
         private int pointIndex;
+
+        public void SetSpeed(int pSpeed)
+        {
+            speed = pSpeed;
+        }
 
         private void OnEnable()
         {
