@@ -5,18 +5,18 @@ namespace TowerDefense
 {
     public class SoliderPool : ObjectPool<Patrol>
     {
-        private Patrol prefab;
+        private GameObject prefab;
 
-        public SoliderPool(Patrol pPrefab)
+        public SoliderPool(GameObject pPrefab)
         {
             prefab = pPrefab;
         }
 
         protected override Patrol CreateInstance()
         {
-            Patrol instance = GameObject.Instantiate<Patrol>(prefab);
+            GameObject instance = GameObject.Instantiate(prefab) as GameObject;
 
-            return instance;
+            return instance.GetComponent<Patrol>();
         }
     }
 }

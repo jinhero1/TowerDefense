@@ -4,13 +4,12 @@ namespace TowerDefense
 {
     public class WaveSpawner : MonoBehaviour
     {
-        [SerializeField] private Patrol soliderPrefab;
-
         private SoliderPool soliderPool = null;
 
         public void NextWave()
         {
-            soliderPool = new SoliderPool(soliderPrefab);
+            EnemyConfiguration configuration = CommonServices.GameAssetManager.Enemies.GetConfiguration(0);
+            soliderPool = new SoliderPool(configuration.Prefab);
 
             soliderPool.Rent();
         }

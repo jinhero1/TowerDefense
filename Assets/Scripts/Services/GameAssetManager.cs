@@ -7,6 +7,7 @@ namespace TowerDefense
     public class GameAssetManager : IService
     {
         public PatrolPoints PatrolPoints { get; private set; }
+        public Enemies Enemies { get; private set; }
 
         public void Initialize()
         {            
@@ -15,6 +16,7 @@ namespace TowerDefense
         public void Load()
         {
             Load<PatrolPoints>("PatrolPoints", (x) => { PatrolPoints = x; });
+            Load<Enemies>("Enemies", (x) => { Enemies = x; });
         }
 
         private void Load<T>(string pFileNameWithoutExtension, Action<T> pOnCompleted) where T : ScriptableObject
