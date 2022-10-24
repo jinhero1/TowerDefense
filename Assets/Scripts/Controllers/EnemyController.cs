@@ -4,7 +4,7 @@ namespace TowerDefense
 {
     public class EnemyController : IService
     {
-        private SoliderPool soliderPool = null;
+        private EnemyPool soliderPool = null;
 
         public void Initialize()
         {
@@ -15,7 +15,7 @@ namespace TowerDefense
             int enemyTypeIndex = (int)EnemyType.Warrior;
 
             EnemyConfiguration configuration = GameServices.GameAssetManager.EnemyConfigurations.GetConfiguration(enemyTypeIndex);
-            soliderPool = new SoliderPool(configuration);
+            soliderPool = new EnemyPool(configuration);
 
             soliderPool.Rent();
         }

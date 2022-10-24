@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace TowerDefense
 {
-    public class SoliderPool : ObjectPool<Patrol>
+    public class EnemyPool : ObjectPool<Patrol>
     {
         private EnemyConfiguration configuration;
         private Transform hierarchyParent;
 
-        public SoliderPool(EnemyConfiguration pConfiguration)
+        public EnemyPool(EnemyConfiguration pConfiguration)
         {
             configuration = pConfiguration;
             hierarchyParent = new GameObject($"{pConfiguration.Prefab.name}Pool").transform;
