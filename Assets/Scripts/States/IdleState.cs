@@ -1,17 +1,22 @@
+using System;
 using UniRx;
 
 namespace TowerDefense
 {
     public class IdleState : BaseState
     {
+        private IDisposable disposable;
+
         public override void OnEnter()
         {
             GameServices.EnemyController.NextWave();
 
             MessageBroker.Default.Receive<PatrolArrivalDestinationArgs>().Subscribe(OnPatrolArrivalDestination);
-            GameServices.GameDataManager.PlayerData.IsDead.Where(x => x == true).Subscribe(_ =>
+            disposable = GameServices.GameDataManager.PlayerData.IsDead.Where(x => x == true).Subscribe(_ =>
             {
-                UnityEngine.Debug.Log("Player is dead");
+                disposable.Dispose();
+
+                MessageBroker.Default.Publish(new GameResultArgs(false));
             });
         }
 

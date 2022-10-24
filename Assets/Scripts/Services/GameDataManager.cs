@@ -1,4 +1,5 @@
 using Library;
+using UniRx;
 
 namespace TowerDefense
 {
@@ -12,7 +13,7 @@ namespace TowerDefense
 
         public void Reset(PlayerConfiguration pPlayerConfiguration)
         {
-            PlayerData = new PlayerData(pPlayerConfiguration.Money, pPlayerConfiguration.HP);
+            PlayerData = new PlayerData(pPlayerConfiguration.Money, pPlayerConfiguration.HP);            
         }
     }
 }
