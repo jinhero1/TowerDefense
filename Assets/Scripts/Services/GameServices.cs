@@ -8,10 +8,12 @@ namespace TowerDefense
 
         private static readonly GameAssetManager gameAssetManager = serviceLocator.GetService<GameAssetManager>();
         private static readonly GameMapManager gameMapManager = serviceLocator.GetService<GameMapManager>();
+        private static readonly GameDataManager gameDataManager = serviceLocator.GetService<GameDataManager>();
         private static readonly EnemyController enemyController = serviceLocator.GetService<EnemyController>();
 
         public static GameAssetManager GameAssetManager => gameAssetManager;
         public static GameMapManager GameMapManager => gameMapManager;
+        public static GameDataManager GameDataManager => gameDataManager;
         public static EnemyController EnemyController => enemyController;
     }
 }

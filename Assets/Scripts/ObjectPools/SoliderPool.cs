@@ -18,7 +18,7 @@ namespace TowerDefense
         {
             GameObject instance = GameObject.Instantiate(configuration.Prefab, hierarchyParent) as GameObject;
             Patrol patrol = instance.GetComponent<Patrol>();
-            patrol.SetSpeed(configuration.Speed);
+            patrol.SetData(configuration.Type, configuration.Speed);
 
             return patrol;
         }

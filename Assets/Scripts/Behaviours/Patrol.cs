@@ -1,3 +1,4 @@
+using UniRx;
 using UnityEngine;
 
 namespace TowerDefense
@@ -6,12 +7,14 @@ namespace TowerDefense
     {
         private const int ZERO = 0;
 
+        private EnemyType enemyType;
         private int speed;
         private int pointIndex;
         private Vector3 nextPosition;
 
-        public void SetSpeed(int pSpeed)
+        public void SetData(EnemyType pEnemyType, int pSpeed)
         {
+            enemyType = pEnemyType;
             speed = pSpeed;
         }
 
@@ -40,8 +43,14 @@ namespace TowerDefense
             }
             else
             {
-                GameServices.EnemyController.Return(this);
+                OnArrivalDestination();
             }
+        }
+
+        private void OnArrivalDestination()
+        {
+            GameServices.EnemyController.Return(this);
+            MessageBroker.Default.Publish(new PatrolArrivalDestinationArgs(enemyType));
         }
 
         private void Update()

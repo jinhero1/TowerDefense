@@ -6,6 +6,7 @@ namespace TowerDefense
         {
             GameServices.GameMapManager.Load();
             GameServices.GameAssetManager.Load();
+            GameServices.GameDataManager.Reset();
 
             Next();
         }

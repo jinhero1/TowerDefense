@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace TowerDefense
@@ -7,17 +6,19 @@ namespace TowerDefense
     [Serializable]
     public class EnemyConfiguration
     {
+        [SerializeField] private EnemyType type;
         [SerializeField] private int speed;
         [SerializeField] private int attack;
         [SerializeField] private GameObject prefab;
 
+        public EnemyType Type => type;
         public int Speed => speed;
         public int Attack => attack;
         public GameObject Prefab => prefab;
     }
 
-    [CreateAssetMenu(menuName = "Scriptable Object/Create Enemies")]
-    public class Enemies : ScriptableObject
+    [CreateAssetMenu(menuName = "Scriptable Object/Create Enemy Configurations")]
+    public class EnemyConfigurations : ScriptableObject
     {
         [SerializeField] private EnemyConfiguration[] enemies;
 
