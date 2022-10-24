@@ -16,7 +16,7 @@ namespace TowerDefense
             {
                 disposable.Dispose();
 
-                MessageBroker.Default.Publish(new GameResultArgs(false));
+                Next();
             });
         }
 

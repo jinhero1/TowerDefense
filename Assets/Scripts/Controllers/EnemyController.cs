@@ -1,4 +1,5 @@
 using Library;
+using UniRx;
 
 namespace TowerDefense
 {
@@ -8,15 +9,21 @@ namespace TowerDefense
 
         public void Initialize()
         {
+            MessageBroker.Default.Receive<RestartGameArgs>().Subscribe(_ =>
+            {
+                soliderPool.Clear();
+            });
+        }
+
+        public void Prepare()
+        {
+            int enemyTypeIndex = (int)EnemyType.Warrior;
+            EnemyConfiguration configuration = GameServices.GameAssetManager.EnemyConfigurations.GetConfiguration(enemyTypeIndex);
+            soliderPool = new EnemyPool(configuration);
         }
 
         public void NextWave()
         {
-            int enemyTypeIndex = (int)EnemyType.Warrior;
-
-            EnemyConfiguration configuration = GameServices.GameAssetManager.EnemyConfigurations.GetConfiguration(enemyTypeIndex);
-            soliderPool = new EnemyPool(configuration);
-
             soliderPool.Rent();
         }
 

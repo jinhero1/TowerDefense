@@ -7,6 +7,8 @@ namespace TowerDefense
             GameServices.GameMapManager.Load();
             GameServices.GameAssetManager.Load();
 
+            GameServices.EnemyController.Prepare();
+
             Next();
         }
     }
