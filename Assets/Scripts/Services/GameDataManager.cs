@@ -10,10 +10,9 @@ namespace TowerDefense
         {
         }
 
-        public void Reset()
+        public void Reset(PlayerConfiguration pPlayerConfiguration)
         {
-            // test
-            PlayerData = new PlayerData(0, 10);
+            PlayerData = new PlayerData(pPlayerConfiguration.Money, pPlayerConfiguration.HP);
         }
     }
 }
