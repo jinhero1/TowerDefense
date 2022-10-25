@@ -6,9 +6,17 @@ namespace TowerDefense
     public class TowerPlacing : MonoBehaviour
     {
         [SerializeField] private GameObject dummyPlacement;
+        [SerializeField] private SpriteRenderer range;
+        [SerializeField] private Color legalColor;
+        [SerializeField] private Color illegalColor;
+
+        private readonly Vector3 initialPosition = new Vector3(-1000, -1000, 0);
 
         private Vector3Int cellPosition;
         private Vector3 cellWorldPosition;
+
+        private int _range;
+        private bool canPlace;
 
         private void Awake()
         {
@@ -22,12 +30,20 @@ namespace TowerDefense
         private void OnSelectedTowerItem(SelectedTowerItemArgs pArgs)
         {
             SetActive(true);
+
+            _range = GameServices.GameAssetManager.TowerConfigurations.GetRange(pArgs.TowerType);
+            range.transform.localScale = new Vector3(_range, _range, range.transform.localScale.z);
         }
 
         private void SetActive(bool pValue)
         {
             this.enabled = pValue;
             dummyPlacement.SetActive(pValue);
+
+            if (pValue)
+            {
+                dummyPlacement.transform.position = initialPosition;
+            }
         }
 
         private void Update()
@@ -38,10 +54,15 @@ namespace TowerDefense
             cellWorldPosition = GameServices.GameMapManager.Tilemap.GetCellCenterWorld(cellPosition);
             dummyPlacement.transform.position = cellWorldPosition;
 
+            canPlace = GameServices.TowerController.CanPlace(cellPosition);
+            range.color = canPlace ? legalColor : illegalColor;
+
+            if (!canPlace) return;
+
             if (GameServices.InputController.IsConfirmed())
             {
                 TowerType towerType = TowerType.Basic;
-                MessageBroker.Default.Publish(new ConfirmedTowerPositionArgs(towerType, cellWorldPosition));
+                MessageBroker.Default.Publish(new ConfirmedTowerPositionArgs(towerType, cellPosition, cellWorldPosition));
 
                 SetActive(false);
             }

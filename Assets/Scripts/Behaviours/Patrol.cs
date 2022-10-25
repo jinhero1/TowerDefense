@@ -28,7 +28,7 @@ namespace TowerDefense
 
         private Vector3 GetPosition(int pIndex)
         {
-            Vector3Int point = GameServices.GameAssetManager.PatrolPoints.GetPoint(pIndex);
+            Vector3Int point = GameServices.GameAssetManager.MapConfiguration.GetPatrolPoint(pIndex);
 
             return GameServices.GameMapManager.Tilemap.GetCellCenterWorld(point);
         }
@@ -37,7 +37,7 @@ namespace TowerDefense
         {
             pointIndex++;
 
-            if (GameServices.GameAssetManager.PatrolPoints.HasPoint(pointIndex))
+            if (GameServices.GameAssetManager.MapConfiguration.HasPatrolPoint(pointIndex))
             {
                 nextPosition = GetPosition(pointIndex);
             }

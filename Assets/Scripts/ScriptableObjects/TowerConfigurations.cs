@@ -11,12 +11,14 @@ namespace TowerDefense
         [SerializeField] private int frequency;
         [SerializeField] private int attack;
         [SerializeField] private GameObject prefab;
+        [SerializeField] private Sprite icon;
 
         public TowerType Type => type;
         public int Range => range;
         public int Frequency => frequency;
         public int Attack => attack;
         public GameObject Prefab => prefab;
+        public Sprite Icon => icon;
     }
 
     [CreateAssetMenu(menuName = "Scriptable Object/Create Tower Configurations")]
@@ -27,6 +29,11 @@ namespace TowerDefense
         public TowerConfiguration GetConfiguration(int pIndex)
         {
             return towers[pIndex];
+        }
+
+        public int GetRange(TowerType pType)
+        {
+            return towers[(int)pType].Range;
         }
     }
 }
