@@ -9,6 +9,9 @@ namespace TowerDefense
             TimeUtility.Resume();
             GameServices.GameDataManager.Reset(GameServices.GameAssetManager.PlayerConfiguration);
 
+            GameServices.EnemyController.Reset();
+            GameServices.TowerController.Reset();
+
             Next();
         }
     }

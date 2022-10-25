@@ -1,5 +1,6 @@
 using System;
 using Library;
+using UniRx;
 using UnityEngine;
 
 namespace TowerDefense
@@ -9,6 +10,7 @@ namespace TowerDefense
         public PlayerConfiguration PlayerConfiguration { get; private set; }
         public PatrolPoints PatrolPoints { get; private set; }
         public EnemyConfigurations EnemyConfigurations { get; private set; }
+        public TowerConfigurations TowerConfigurations { get; private set; }
 
         public void Initialize()
         {            
@@ -19,6 +21,9 @@ namespace TowerDefense
             Load<PlayerConfiguration>("PlayerConfiguration", (x) => { PlayerConfiguration = x; });
             Load<PatrolPoints>("PatrolPoints", (x) => { PatrolPoints = x; });
             Load<EnemyConfigurations>("EnemyConfigurations", (x) => { EnemyConfigurations = x; });
+            Load<TowerConfigurations>("TowerConfigurations", (x) => { TowerConfigurations = x; });
+
+            MessageBroker.Default.Publish(new GameAssetReadyArgs());
         }
 
         private void Load<T>(string pFileNameWithoutExtension, Action<T> pOnCompleted) where T : ScriptableObject

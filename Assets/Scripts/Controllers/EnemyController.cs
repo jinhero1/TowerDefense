@@ -5,31 +5,32 @@ namespace TowerDefense
 {
     public class EnemyController : IService
     {
-        private EnemyPool soliderPool = null;
+        private EnemyPool pool = null;
 
         public void Initialize()
         {
-            MessageBroker.Default.Receive<RestartGameArgs>().Subscribe(_ =>
-            {
-                soliderPool.Clear();
-            });
         }
 
         public void Prepare()
         {
-            int enemyTypeIndex = (int)EnemyType.Warrior;
-            EnemyConfiguration configuration = GameServices.GameAssetManager.EnemyConfigurations.GetConfiguration(enemyTypeIndex);
-            soliderPool = new EnemyPool(configuration);
+            int typeIndex = (int)EnemyType.Warrior;
+            EnemyConfiguration configuration = GameServices.GameAssetManager.EnemyConfigurations.GetConfiguration(typeIndex);
+            pool = new EnemyPool(configuration);
+        }
+
+        public void Reset()
+        {
+            pool.ReturnAll();
         }
 
         public void NextWave()
         {
-            soliderPool.Rent();
+            pool.Rent();
         }
 
         public void Return(Patrol pTarget)
         {
-            soliderPool.Return(pTarget);
+            pool.Return(pTarget);
         }
     }
 }
