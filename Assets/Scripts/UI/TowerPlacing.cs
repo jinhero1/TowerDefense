@@ -15,7 +15,6 @@ namespace TowerDefense
         private Vector3Int cellPosition;
         private Vector3 cellWorldPosition;
 
-        private int _range;
         private bool canPlace;
 
         private void Awake()
@@ -31,8 +30,7 @@ namespace TowerDefense
         {
             SetActive(true);
 
-            _range = GameServices.GameAssetManager.TowerConfigurations.GetRange(pArgs.TowerType);
-            range.transform.localScale = new Vector3(_range, _range, range.transform.localScale.z);
+            GameServices.TowerController.SetRange(pArgs.TowerType, range.transform);
         }
 
         private void SetActive(bool pValue)

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towers:
   - type: 0
-    range: 2
-    frequency: 1
+    range: 5
+    waitingTime: 1
     attack: 1
     prefab: {fileID: 7754827392084288076, guid: 337063574b55548c7a44ed6b9db2fc0f, type: 3}
     icon: {fileID: 2539138467979641940, guid: b7b7bfd0ab6424bf1b4a12b51fc69087, type: 3}

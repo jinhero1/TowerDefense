@@ -8,6 +8,7 @@ namespace TowerDefense
     {
         private TowerPool pool = null;
 
+        private int _range;
         private bool _isInPlaceableRange;
         private bool _isInOccupying;
 
@@ -18,14 +19,20 @@ namespace TowerDefense
 
         public void Prepare()
         {
-            int typeIndex = (int)TowerType.Basic;
-            TowerConfiguration configuration = GameServices.GameAssetManager.TowerConfigurations.GetConfiguration(typeIndex);
+            TowerType type = TowerType.Basic;
+            TowerConfiguration configuration = GameServices.GameAssetManager.TowerConfigurations.GetConfiguration(type);
             pool = new TowerPool(configuration);
         }
 
         public void Reset()
         {
             pool.ReturnAll();
+        }
+
+        public void SetRange(TowerType pType, Transform pTarget)
+        {
+            _range = GameServices.GameAssetManager.TowerConfigurations.GetRange(pType);
+            pTarget.localScale = new Vector3(_range, _range, pTarget.localScale.z);
         }
 
         public bool CanPlace(Vector3Int pCellPosition)
@@ -39,6 +46,7 @@ namespace TowerDefense
         private void OnConfirmedTowerPosition(ConfirmedTowerPositionArgs pArgs)
         {
             RangeDefense unit = pool.Rent();
+            unit.SetData(GameServices.GameAssetManager.TowerConfigurations.GetConfiguration(pArgs.TowerType));
             unit.transform.position = pArgs.CellWorldPosition;
 
             GameServices.GameDataManager.Occupy(pArgs.CellPosition);

@@ -14,8 +14,7 @@ namespace TowerDefense
         {
             MessageBroker.Default.Receive<GameAssetReadyArgs>().Subscribe(_ =>
             {
-                int typeIndex = (int)towerType;
-                TowerConfiguration configuration = GameServices.GameAssetManager.TowerConfigurations.GetConfiguration(typeIndex);
+                TowerConfiguration configuration = GameServices.GameAssetManager.TowerConfigurations.GetConfiguration(towerType);
                 image.sprite = configuration.Icon;
             });
             button.OnClickAsObservable().Subscribe(_ =>

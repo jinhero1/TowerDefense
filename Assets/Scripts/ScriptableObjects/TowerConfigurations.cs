@@ -8,14 +8,14 @@ namespace TowerDefense
     {
         [SerializeField] private TowerType type;
         [SerializeField] private int range;
-        [SerializeField] private int frequency;
+        [SerializeField] private int waitingTime;
         [SerializeField] private int attack;
         [SerializeField] private GameObject prefab;
         [SerializeField] private Sprite icon;
 
         public TowerType Type => type;
         public int Range => range;
-        public int Frequency => frequency;
+        public int WaitingTime => waitingTime;
         public int Attack => attack;
         public GameObject Prefab => prefab;
         public Sprite Icon => icon;
@@ -26,14 +26,14 @@ namespace TowerDefense
     {
         [SerializeField] private TowerConfiguration[] towers;
 
-        public TowerConfiguration GetConfiguration(int pIndex)
+        public TowerConfiguration GetConfiguration(TowerType pType)
         {
-            return towers[pIndex];
+            return towers[(int)pType];
         }
 
         public int GetRange(TowerType pType)
         {
-            return towers[(int)pType].Range;
+            return GetConfiguration(pType).Range;
         }
     }
 }
