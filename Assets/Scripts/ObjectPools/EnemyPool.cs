@@ -11,7 +11,7 @@ namespace TowerDefense
 
         protected override void OnCreatedInstance(Patrol pInstance)
         {
-            pInstance.SetData(configuration.Type, configuration.Speed);
+            pInstance.SetData(configuration);
         }
     }
 }

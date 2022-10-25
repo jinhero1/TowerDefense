@@ -239,4 +239,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ea33aa5c2c749bab8198202289d872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: {fileID: 103036240494290534}
+  targetTag: Enemy
+  range: {fileID: 4024852628444830062}

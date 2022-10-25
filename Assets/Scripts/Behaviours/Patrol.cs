@@ -7,15 +7,19 @@ namespace TowerDefense
     {
         private const int ZERO = 0;
 
-        private EnemyType enemyType;
-        private int speed;
+        private EnemyConfiguration configuration;
+        private EnemyData data;
         private int pointIndex;
         private Vector3 nextPosition;
 
-        public void SetData(EnemyType pEnemyType, int pSpeed)
+        public void SetData(EnemyConfiguration pConfiguration)
         {
-            enemyType = pEnemyType;
-            speed = pSpeed;
+            configuration = pConfiguration;
+        }
+
+        public void Reset()
+        {
+            data = new EnemyData(configuration.HP);
         }
 
         private void OnEnable()
@@ -50,12 +54,14 @@ namespace TowerDefense
         private void OnArrivalDestination()
         {
             GameServices.EnemyController.Return(this);
-            MessageBroker.Default.Publish(new PatrolArrivalDestinationArgs(enemyType));
+            MessageBroker.Default.Publish(new PatrolArrivalDestinationArgs(configuration.Type));
         }
 
         private void Update()
         {
-            this.transform.position = Vector2.MoveTowards(this.transform.position, nextPosition, speed * Time.deltaTime);
+            if (configuration == null) return;
+
+            this.transform.position = Vector2.MoveTowards(this.transform.position, nextPosition, configuration.Speed * Time.deltaTime);
 
             if (Vector2.Distance(this.transform.position, nextPosition) == ZERO)
             {

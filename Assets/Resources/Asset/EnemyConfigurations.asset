@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: EnemyConfigurations
   m_EditorClassIdentifier: 
   enemies:
-  - speed: 1
+  - type: 0
+    hp: 2
+    speed: 1
     attack: 10
     prefab: {fileID: 1405511156772448782, guid: a1939ffca45d74ecb9751a23f27329dd, type: 3}

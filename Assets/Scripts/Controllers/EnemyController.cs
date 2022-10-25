@@ -25,7 +25,13 @@ namespace TowerDefense
 
         public void NextWave()
         {
-            pool.Rent();
+            SpawnPatrol();
+        }
+
+        private void SpawnPatrol()
+        {
+            Patrol patrol = pool.Rent();
+            patrol.Reset();
         }
 
         public void Return(Patrol pTarget)

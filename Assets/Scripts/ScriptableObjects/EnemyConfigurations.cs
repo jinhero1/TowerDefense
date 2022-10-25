@@ -7,11 +7,13 @@ namespace TowerDefense
     public class EnemyConfiguration
     {
         [SerializeField] private EnemyType type;
+        [SerializeField] private int hp;
         [SerializeField] private int speed;
         [SerializeField] private int attack;
         [SerializeField] private GameObject prefab;
 
         public EnemyType Type => type;
+        public int HP => hp;
         public int Speed => speed;
         public int Attack => attack;
         public GameObject Prefab => prefab;
