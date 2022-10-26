@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UniRx;
@@ -30,12 +29,7 @@ namespace TowerDefense
             GameServices.TowerController.SetTower(pConfiguration.Type, spriteRenderer, range.transform);
 
             cooldownCommand?.Dispose();
-            cooldownCommand = new AsyncReactiveCommand();
-            cooldownCommand.Subscribe(_ =>
-            {
-                return Observable.Timer(TimeSpan.FromSeconds(pConfiguration.WaitingTime)).AsUnitObservable();
-            });
-            cooldownCommand.CanExecute.Where(x => x == true).Subscribe(_ => OnCountdownFinished());
+            cooldownCommand = AsyncReactiveCommandUtility.Create(pConfiguration.WaitingTime, OnCountdownFinished);
         }
 
         private void OnTargetChanged(IEnumerable<GameObject> pEnumerable, bool isEnterEvent)

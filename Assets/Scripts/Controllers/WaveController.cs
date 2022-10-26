@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using Library;
 using UniRx;
 
@@ -6,8 +6,14 @@ namespace TowerDefense
 {
     public class WaveController : IService
     {
+        private const int ZERO = 0;
+
+        private AsyncReactiveCommand cooldownCommand;
+        private Queue<EnemyType> enemyQueue;
+
         public void Initialize()
         {
+            MessageBroker.Default.Receive<GameAssetReadyArgs>().Subscribe(_ => OnGameAssetReady());
             MessageBroker.Default.Receive<AllEnemiesDeadArgs>().Subscribe(_ => OnAllEnemiesDead());
         }
 
@@ -16,9 +22,19 @@ namespace TowerDefense
             OnNextWave();
         }
 
+        private void OnGameAssetReady()
+        {
+            if (cooldownCommand == null)
+            {
+                float intervalTime = GameServices.GameAssetManager.WaveConfigurations.IntervalTime;
+                cooldownCommand = AsyncReactiveCommandUtility.Create(intervalTime, OnCountdownFinished);
+            }
+        }
+
         private void OnAllEnemiesDead()
         {
-            // TODO: If no enemies are still in queue.
+            if (enemyQueue.Count > ZERO) return;
+
             GameServices.GameDataManager.WaveData.Current.Value++;
 
             OnNextWave();
@@ -32,11 +48,26 @@ namespace TowerDefense
                 return;
             }
 
-            // TODO: Initial from wave configuration
-            foreach (int typeIndex in Enum.GetValues(typeof(EnemyType)))
-            {
-                NotifySpawnEnemy((EnemyType)typeIndex);
-            }
+            int currentWave = GameServices.GameDataManager.WaveData.Current.Value;
+            WaveConfiguration configuration = GameServices.GameAssetManager.WaveConfigurations.GetConfiguration(currentWave);
+            enemyQueue = configuration.GetEnemyQueue();
+
+            Execute();
+        }
+
+        private void OnCountdownFinished()
+        {
+            if (enemyQueue == null || enemyQueue.Count == ZERO) return;
+
+            Execute();
+        }
+
+        private void Execute()
+        {
+            EnemyType enemyType = enemyQueue.Dequeue();
+            NotifySpawnEnemy(enemyType);
+
+            cooldownCommand.Execute();
         }
 
         private void NotifySpawnEnemy(EnemyType pType)

@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderObject: {fileID: 7267689735060323775}
-  milliseconds: 0.2
+  displayTime: 0.02
 --- !u!1 &7754827392084288076
 GameObject:
   m_ObjectHideFlags: 0

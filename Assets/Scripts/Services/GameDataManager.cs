@@ -18,11 +18,10 @@ namespace TowerDefense
         {
         }
 
-        public void Reset(PlayerConfiguration pPlayerConfiguration)
+        public void Reset(PlayerConfiguration pPlayerConfiguration, WaveConfigurations pWaveConfigurations)
         {
             PlayerData = new PlayerData(pPlayerConfiguration.Money, pPlayerConfiguration.HP);
-            // TODO: Initial from wave configuration
-            WaveData = new WaveData(1);
+            WaveData = new WaveData(pWaveConfigurations.GetMaxWave());
             NeedStopFire = false;
             occupied.Clear();
             enemies.Clear();

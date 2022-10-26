@@ -11,6 +11,7 @@ namespace TowerDefense
         public MapConfiguration MapConfiguration { get; private set; }
         public EnemyConfigurations EnemyConfigurations { get; private set; }
         public TowerConfigurations TowerConfigurations { get; private set; }
+        public WaveConfigurations WaveConfigurations { get; private set; }
 
         public void Initialize()
         {            
@@ -22,6 +23,7 @@ namespace TowerDefense
             Load<MapConfiguration>("MapConfiguration", (x) => { MapConfiguration = x; });
             Load<EnemyConfigurations>("EnemyConfigurations", (x) => { EnemyConfigurations = x; });
             Load<TowerConfigurations>("TowerConfigurations", (x) => { TowerConfigurations = x; });
+            Load<WaveConfigurations>("WaveConfigurations", (x) => { WaveConfigurations = x; });
 
             MessageBroker.Default.Publish(new GameAssetReadyArgs());
         }
