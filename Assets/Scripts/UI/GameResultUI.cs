@@ -1,6 +1,7 @@
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
+using Library;
 
 namespace TowerDefense
 {
@@ -9,6 +10,7 @@ namespace TowerDefense
         [SerializeField] private GameObject youWinPage;
         [SerializeField] private GameObject gameOverPage;
         [SerializeField] private Button retry;
+        [SerializeField] private Button exit;
 
         private void Awake()
         {
@@ -16,6 +18,10 @@ namespace TowerDefense
             retry.OnClickAsObservable().Subscribe(_ => {
                 gameOverPage.SetActive(false);
                 MessageBroker.Default.Publish(new RestartGameArgs());
+            });
+            exit.OnClickAsObservable().Subscribe(_ =>
+            {
+                ApplicationUtility.Quit();
             });
         }
 

@@ -12,7 +12,7 @@ namespace TowerDefense
             MessageBroker.Default.Receive<PatrolArrivalDestinationArgs>().Subscribe(OnPatrolArrivalDestination);
             MessageBroker.Default.Receive<NoNextWaveArgs>().Subscribe(_ =>
             {
-                UnityEngine.Debug.Log("Change to WinState");
+                Next();
             });
         }
 
