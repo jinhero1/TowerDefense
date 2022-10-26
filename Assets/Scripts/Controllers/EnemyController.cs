@@ -37,6 +37,11 @@ namespace TowerDefense
             pool.Return(pTarget);
 
             GameServices.GameDataManager.RemoveEnemyData(pTarget.Id);
+            // All enemies dead or no enemies
+            if (GameServices.GameDataManager.AreAllEnemiesDead())
+            {
+                MessageBroker.Default.Publish(new AllEnemiesDeadArgs());
+            }
         }
     }
 }
