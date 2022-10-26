@@ -6,6 +6,7 @@ namespace TowerDefense
     public class MapConfiguration : ScriptableObject
     {
         [SerializeField] private Vector2Int[] patrolPoints;
+        [SerializeField] private float[] patrolAngles;
         [SerializeField] private RectInt[] placeableRanges;
 
         private Vector2Int _point;
@@ -33,6 +34,11 @@ namespace TowerDefense
         public Vector3Int GetPatrolPoint(int pIndex)
         {
             return (Vector3Int)patrolPoints[pIndex];
+        }
+
+        public float GetPatrolAngle(int pIndex)
+        {
+            return patrolAngles[pIndex];
         }
     }
 }

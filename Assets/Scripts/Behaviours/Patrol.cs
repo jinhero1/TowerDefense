@@ -1,3 +1,4 @@
+using Library;
 using UniRx;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace TowerDefense
         [SerializeField] private SpriteRenderer spriteRenderer;
 
         private int pointIndex;
+        private float currentAngle;
         private Vector3 nextPosition;
 
         public int Id { get; private set; }
@@ -40,11 +42,13 @@ namespace TowerDefense
 
         private void ChangeNextPositionIfNeeded()
         {
+            currentAngle = GameServices.GameAssetManager.MapConfiguration.GetPatrolAngle(pointIndex);
             pointIndex++;
 
             if (GameServices.GameAssetManager.MapConfiguration.HasPatrolPoint(pointIndex))
             {
                 nextPosition = GetPosition(pointIndex);
+                TransformUtility.SetAngle(this.transform, currentAngle);
             }
             else
             {

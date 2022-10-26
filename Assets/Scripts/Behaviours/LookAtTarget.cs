@@ -1,3 +1,4 @@
+using Library;
 using UnityEngine;
 
 namespace TowerDefense
@@ -11,7 +12,7 @@ namespace TowerDefense
             Vector2 direction = pTarget.position - this.transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + imageAngleOffset;
 
-            this.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            TransformUtility.SetAngle(this.transform, angle);
         }
     }
 }
