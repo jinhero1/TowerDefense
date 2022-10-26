@@ -19,3 +19,8 @@ MonoBehaviour:
     speed: 1
     attack: 10
     image: {fileID: 1785240737630438142, guid: b7b7bfd0ab6424bf1b4a12b51fc69087, type: 3}
+  - type: 1
+    hp: 1
+    speed: 3
+    attack: 3
+    image: {fileID: 8173051871130434640, guid: b7b7bfd0ab6424bf1b4a12b51fc69087, type: 3}

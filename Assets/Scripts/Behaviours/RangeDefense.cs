@@ -13,7 +13,7 @@ namespace TowerDefense
 
         private TowerConfiguration configuration;
         private GameObject target;
-        private AsyncReactiveCommand waitingCommand;
+        private AsyncReactiveCommand cooldownCommand;
 
         private void Awake()
         {
@@ -26,13 +26,13 @@ namespace TowerDefense
 
             GameServices.TowerController.SetRange(pConfiguration.Type, range.transform);
 
-            waitingCommand?.Dispose();
-            waitingCommand = new AsyncReactiveCommand();
-            waitingCommand.Subscribe(_ =>
+            cooldownCommand?.Dispose();
+            cooldownCommand = new AsyncReactiveCommand();
+            cooldownCommand.Subscribe(_ =>
             {
                 return Observable.Timer(TimeSpan.FromSeconds(pConfiguration.WaitingTime)).AsUnitObservable();
             });
-            waitingCommand.CanExecute.Where(x => x == true).Subscribe(_ => OnCountdownFinished());
+            cooldownCommand.CanExecute.Where(x => x == true).Subscribe(_ => OnCountdownFinished());
         }
 
         private void OnTargetChanged(IEnumerable<GameObject> pEnumerable, bool isEnterEvent)
@@ -41,7 +41,7 @@ namespace TowerDefense
 
             if (isEnterEvent)
             {
-                ThrowFireCommandIfCanExecute();
+                NotifyCombatIfCanExecute();
             }
         }
 
@@ -49,15 +49,15 @@ namespace TowerDefense
         {
             if (target == null) return;
 
-            ThrowFireCommandIfCanExecute();
+            NotifyCombatIfCanExecute();
         }
 
-        private void ThrowFireCommandIfCanExecute()
+        private void NotifyCombatIfCanExecute()
         {
-            if (!waitingCommand.CanExecute.Value) return;            
+            if (!cooldownCommand.CanExecute.Value) return;            
             if (GameServices.GameDataManager.NeedStopFire) return;
 
-            waitingCommand.Execute();
+            cooldownCommand.Execute();
             MessageBroker.Default.Publish(new CombatArgs(this, configuration.Attack, target.GetComponent<Patrol>()));
         }
     }

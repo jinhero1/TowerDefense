@@ -1,3 +1,4 @@
+using System;
 using Library;
 using UniRx;
 
@@ -32,8 +33,15 @@ namespace TowerDefense
             }
 
             // TODO: Initial from wave configuration
-            EnemyType enemyType = EnemyType.Warrior;
-            GameServices.EnemyController.Spawn(enemyType);
+            foreach (int typeIndex in Enum.GetValues(typeof(EnemyType)))
+            {
+                NotifySpawnEnemy((EnemyType)typeIndex);
+            }
+        }
+
+        private void NotifySpawnEnemy(EnemyType pType)
+        {
+            MessageBroker.Default.Publish(new SpawnEnemyArgs(pType));
         }
     }
 }

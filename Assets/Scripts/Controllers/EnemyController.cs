@@ -1,4 +1,5 @@
 using Library;
+using UniRx;
 
 namespace TowerDefense
 {
@@ -9,6 +10,7 @@ namespace TowerDefense
 
         public void Initialize()
         {
+            MessageBroker.Default.Receive<SpawnEnemyArgs>().Subscribe(OnSpawnEnemy);
         }
 
         public void Prepare()
@@ -22,9 +24,9 @@ namespace TowerDefense
             enemyId = 0;
         }
 
-        public void Spawn(EnemyType pEnemyType)
+        private void OnSpawnEnemy(SpawnEnemyArgs pArgs)
         {
-            EnemyConfiguration configuration = GameServices.GameAssetManager.EnemyConfigurations.GetConfiguration(pEnemyType);
+            EnemyConfiguration configuration = GameServices.GameAssetManager.EnemyConfigurations.GetConfiguration(pArgs.EnemyType);
 
             Patrol patrol = pool.Rent();
             patrol.SetData(++enemyId, configuration);
