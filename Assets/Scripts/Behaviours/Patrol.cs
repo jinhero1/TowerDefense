@@ -7,6 +7,8 @@ namespace TowerDefense
     {
         private const int ZERO = 0;
 
+        [SerializeField] private SpriteRenderer spriteRenderer;
+
         private int pointIndex;
         private Vector3 nextPosition;
 
@@ -17,6 +19,7 @@ namespace TowerDefense
         {
             Id = pId;
             Configuration = pConfiguration;
+            spriteRenderer.sprite = pConfiguration.Image;
         }
 
         private void OnEnable()

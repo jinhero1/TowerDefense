@@ -22,8 +22,9 @@ namespace TowerDefense
             PlayerData = new PlayerData(pPlayerConfiguration.Money, pPlayerConfiguration.HP);
             // TODO: Initial from wave configuration
             WaveData = new WaveData(1);
-            occupied.Clear();
             NeedStopFire = false;
+            occupied.Clear();
+            enemies.Clear();
         }
 
         public void AddOccupying(Vector3Int pCellPosition)

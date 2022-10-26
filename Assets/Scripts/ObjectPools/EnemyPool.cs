@@ -1,12 +1,11 @@
+using UnityEngine;
+
 namespace TowerDefense
 {
     public class EnemyPool : BasePool<Patrol>
     {
-        public EnemyConfiguration Configuration { get; private set; }
-
-        public EnemyPool(EnemyConfiguration pConfiguration) : base(pConfiguration.Prefab)
+        public EnemyPool(GameObject pPrefab) : base(pPrefab)
         {
-            Configuration = pConfiguration;
         }
 
         protected override void OnCreatedInstance(Patrol pInstance)

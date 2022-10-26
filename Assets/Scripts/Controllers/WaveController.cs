@@ -33,7 +33,7 @@ namespace TowerDefense
 
             // TODO: Initial from wave configuration
             EnemyType enemyType = EnemyType.Warrior;
-            GameServices.EnemyController.SpawnPatrol(enemyType);
+            GameServices.EnemyController.Spawn(enemyType);
         }
     }
 }

@@ -13,9 +13,7 @@ namespace TowerDefense
 
         public void Prepare()
         {
-            int typeIndex = (int)EnemyType.Warrior;
-            EnemyConfiguration configuration = GameServices.GameAssetManager.EnemyConfigurations.GetConfiguration(typeIndex);
-            pool = new EnemyPool(configuration);
+            pool = new EnemyPool(GameServices.GameAssetManager.EnemyConfigurations.Prefab);
         }
 
         public void Reset()
@@ -24,10 +22,12 @@ namespace TowerDefense
             enemyId = 0;
         }
 
-        public void SpawnPatrol(EnemyType pEnemyType)
+        public void Spawn(EnemyType pEnemyType)
         {
+            EnemyConfiguration configuration = GameServices.GameAssetManager.EnemyConfigurations.GetConfiguration(pEnemyType);
+
             Patrol patrol = pool.Rent();
-            patrol.SetData(++enemyId, pool.Configuration);
+            patrol.SetData(++enemyId, configuration);
             GameServices.GameDataManager.CreateEnemyData(patrol.Id, patrol.Configuration.HP);
         }
 

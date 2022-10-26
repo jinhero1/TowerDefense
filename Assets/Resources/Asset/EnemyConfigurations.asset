@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51242a7cf0f174c57a983e04cccee337, type: 3}
   m_Name: EnemyConfigurations
   m_EditorClassIdentifier: 
+  prefab: {fileID: 1405511156772448782, guid: a1939ffca45d74ecb9751a23f27329dd, type: 3}
   enemies:
   - type: 0
-    hp: 2
+    hp: 4
     speed: 1
     attack: 10
-    prefab: {fileID: 1405511156772448782, guid: a1939ffca45d74ecb9751a23f27329dd, type: 3}
+    image: {fileID: 1785240737630438142, guid: b7b7bfd0ab6424bf1b4a12b51fc69087, type: 3}

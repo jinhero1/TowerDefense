@@ -10,23 +10,26 @@ namespace TowerDefense
         [SerializeField] private int hp;
         [SerializeField] private int speed;
         [SerializeField] private int attack;
-        [SerializeField] private GameObject prefab;
+        [SerializeField] private Sprite image;
 
         public EnemyType Type => type;
         public int HP => hp;
         public int Speed => speed;
         public int Attack => attack;
-        public GameObject Prefab => prefab;
+        public Sprite Image => image;
     }
 
     [CreateAssetMenu(menuName = "Scriptable Object/Create Enemy Configurations")]
     public class EnemyConfigurations : ScriptableObject
     {
+        [SerializeField] private GameObject prefab;
         [SerializeField] private EnemyConfiguration[] enemies;
 
-        public EnemyConfiguration GetConfiguration(int pIndex)
+        public GameObject Prefab => prefab;
+
+        public EnemyConfiguration GetConfiguration(EnemyType pType)
         {
-            return enemies[pIndex];
+            return enemies[(int)pType];
         }
     }
 }

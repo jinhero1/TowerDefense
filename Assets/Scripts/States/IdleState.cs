@@ -30,9 +30,7 @@ namespace TowerDefense
 
         private void OnPatrolArrivalDestination(PatrolArrivalDestinationArgs pArgs)
         {
-            int enemyTypeIndex = (int)pArgs.EnemyType;
-
-            EnemyConfiguration configuration = GameServices.GameAssetManager.EnemyConfigurations.GetConfiguration(enemyTypeIndex);
+            EnemyConfiguration configuration = GameServices.GameAssetManager.EnemyConfigurations.GetConfiguration(pArgs.EnemyType);
             GameServices.GameDataManager.PlayerData.HP.Value -= configuration.Attack;
         }
     }
