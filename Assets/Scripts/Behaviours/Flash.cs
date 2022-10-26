@@ -3,11 +3,12 @@ using UnityEngine;
 
 namespace TowerDefense
 {
-    public class Fire : MonoBehaviour
+    public class Flash : MonoBehaviour
     {
-        [SerializeField] private GameObject renderObject;
+        [SerializeField] private GameObject[] renderObjects;
         [SerializeField] private float displayTime;
 
+        private GameObject renderObject;
         private AsyncReactiveCommand cooldownCommand;
 
         private void Awake()
@@ -15,7 +16,17 @@ namespace TowerDefense
             cooldownCommand = AsyncReactiveCommandUtility.Create(displayTime, OnCountdownFinished);
         }
 
-        public void Execute()
+        public void SetData(FlashType pType)
+        {
+            for (int i = 0; i < renderObjects.Length; i++)
+            {
+                renderObjects[i].SetActive(false);
+            }
+
+            renderObject = renderObjects[(int)pType];
+        }
+
+        public void Display()
         {
             renderObject.SetActive(true);
             cooldownCommand.Execute();
@@ -23,7 +34,7 @@ namespace TowerDefense
 
         private void OnCountdownFinished()
         {
-            renderObject.SetActive(false);
+            renderObject?.SetActive(false);
         }
     }
 }

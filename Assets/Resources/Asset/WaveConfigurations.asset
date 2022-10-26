@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   intervalTime: 0.5
   waves:
-  - enemyTypes: 00000000010000000100000001000000
+  - enemyTypes: 000000000100000001000000010000000000000000000000

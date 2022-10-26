@@ -15,12 +15,12 @@ MonoBehaviour:
   prefab: {fileID: 1405511156772448782, guid: a1939ffca45d74ecb9751a23f27329dd, type: 3}
   enemies:
   - type: 0
-    hp: 4
+    hp: 5
     speed: 1
     attack: 10
     image: {fileID: 1785240737630438142, guid: b7b7bfd0ab6424bf1b4a12b51fc69087, type: 3}
   - type: 1
-    hp: 1
+    hp: 2
     speed: 3
     attack: 3
     image: {fileID: 8173051871130434640, guid: b7b7bfd0ab6424bf1b4a12b51fc69087, type: 3}

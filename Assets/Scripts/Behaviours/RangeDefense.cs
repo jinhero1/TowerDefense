@@ -11,7 +11,7 @@ namespace TowerDefense
         [SerializeField] private string targetTag;
         [SerializeField] private CollisionDetector range;
         [SerializeField] private LookAtTarget lookAt;
-        [SerializeField] private Fire fire;
+        [SerializeField] private Flash muzzleFlash;
 
         private TowerConfiguration configuration;
         private GameObject target;
@@ -27,6 +27,7 @@ namespace TowerDefense
             configuration = pConfiguration;
 
             GameServices.TowerController.SetTower(pConfiguration.Type, spriteRenderer, range.transform);
+            muzzleFlash?.SetData(pConfiguration.MuzzleFlashType);
 
             cooldownCommand?.Dispose();
             cooldownCommand = AsyncReactiveCommandUtility.Create(pConfiguration.WaitingTime, OnCountdownFinished);
@@ -55,7 +56,7 @@ namespace TowerDefense
             if (GameServices.GameDataManager.NeedStopFire) return;
 
             lookAt?.SetTarget(target.transform);
-            fire?.Execute();
+            muzzleFlash?.Display();
 
             cooldownCommand.Execute();
             MessageBroker.Default.Publish(new CombatArgs(this, configuration.Attack, target.GetComponent<Patrol>()));

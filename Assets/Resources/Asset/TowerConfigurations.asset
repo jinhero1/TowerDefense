@@ -19,8 +19,10 @@ MonoBehaviour:
     waitingTime: 1
     attack: 1
     image: {fileID: 2539138467979641940, guid: b7b7bfd0ab6424bf1b4a12b51fc69087, type: 3}
+    muzzleFlashType: 0
   - type: 1
     range: 4
     waitingTime: 2
-    attack: 2
+    attack: 3
     image: {fileID: -1062004411004075294, guid: b7b7bfd0ab6424bf1b4a12b51fc69087, type: 3}
+    muzzleFlashType: 1

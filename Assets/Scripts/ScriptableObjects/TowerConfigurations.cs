@@ -11,12 +11,14 @@ namespace TowerDefense
         [SerializeField] private int waitingTime;
         [SerializeField] private int attack;
         [SerializeField] private Sprite image;
+        [SerializeField] private FlashType muzzleFlashType;
 
         public TowerType Type => type;
         public int Range => range;
         public int WaitingTime => waitingTime;
         public int Attack => attack;
         public Sprite Image => image;
+        public FlashType MuzzleFlashType => muzzleFlashType;
     }
 
     [CreateAssetMenu(menuName = "Scriptable Object/Create Tower Configurations")]
