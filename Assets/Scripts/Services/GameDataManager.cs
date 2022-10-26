@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Library;
+using UniRx;
 using UnityEngine;
 
 namespace TowerDefense
@@ -25,6 +26,8 @@ namespace TowerDefense
             NeedStopFire = false;
             occupied.Clear();
             enemies.Clear();
+
+            MessageBroker.Default.Publish(new GameDataReadyArgs());
         }
 
         public void AddOccupying(Vector3Int pCellPosition)
