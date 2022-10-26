@@ -5,6 +5,7 @@ namespace TowerDefense
     public class EnemyController : IService
     {
         private EnemyPool pool = null;
+        private int enemyId;
 
         public void Initialize()
         {
@@ -20,17 +21,14 @@ namespace TowerDefense
         public void Reset()
         {
             pool.ReturnAll();
+            enemyId = 0;
         }
 
-        public void NextWave()
-        {
-            SpawnPatrol();
-        }
-
-        private void SpawnPatrol()
+        public void SpawnPatrol(EnemyType pEnemyType)
         {
             Patrol patrol = pool.Rent();
-            patrol.Reset();
+            patrol.SetData(++enemyId, pool.Configuration);
+            GameServices.GameDataManager.CreateEnemyData(patrol.Id, patrol.Configuration.HP);
         }
 
         public void Return(Patrol pTarget)

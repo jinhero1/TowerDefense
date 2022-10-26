@@ -49,7 +49,7 @@ namespace TowerDefense
             unit.SetData(GameServices.GameAssetManager.TowerConfigurations.GetConfiguration(pArgs.TowerType));
             unit.transform.position = pArgs.CellWorldPosition;
 
-            GameServices.GameDataManager.Occupy(pArgs.CellPosition);
+            GameServices.GameDataManager.AddOccupying(pArgs.CellPosition);
         }
     }
 }

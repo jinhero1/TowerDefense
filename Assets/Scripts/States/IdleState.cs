@@ -10,11 +10,15 @@ namespace TowerDefense
         private void Awake()
         {            
             MessageBroker.Default.Receive<PatrolArrivalDestinationArgs>().Subscribe(OnPatrolArrivalDestination);
+            MessageBroker.Default.Receive<NoNextWaveArgs>().Subscribe(_ =>
+            {
+                UnityEngine.Debug.Log("Change to WinState");
+            });
         }
 
         public override void OnEnter()
         {
-            GameServices.EnemyController.NextWave();
+            GameServices.WaveController.Start();
 
             disposable = GameServices.GameDataManager.PlayerData.IsDead.Where(x => x == true).Subscribe(_ =>
             {

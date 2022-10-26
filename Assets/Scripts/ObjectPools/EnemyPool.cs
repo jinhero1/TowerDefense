@@ -2,16 +2,15 @@ namespace TowerDefense
 {
     public class EnemyPool : BasePool<Patrol>
     {
-        private EnemyConfiguration configuration;
+        public EnemyConfiguration Configuration { get; private set; }
 
         public EnemyPool(EnemyConfiguration pConfiguration) : base(pConfiguration.Prefab)
         {
-            configuration = pConfiguration;
+            Configuration = pConfiguration;
         }
 
         protected override void OnCreatedInstance(Patrol pInstance)
         {
-            pInstance.SetData(configuration);
         }
     }
 }
