@@ -11,6 +11,7 @@ namespace TowerDefense
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private string targetTag;
         [SerializeField] private CollisionDetector range;
+        [SerializeField] private LookAtTarget lookAt;
 
         private TowerConfiguration configuration;
         private GameObject target;
@@ -42,7 +43,7 @@ namespace TowerDefense
 
             if (isEnterEvent)
             {
-                NotifyCombatIfCanExecute();
+                NotifyFireIfCanExecute();
             }
         }
 
@@ -50,13 +51,15 @@ namespace TowerDefense
         {
             if (target == null) return;
 
-            NotifyCombatIfCanExecute();
+            NotifyFireIfCanExecute();
         }
 
-        private void NotifyCombatIfCanExecute()
+        private void NotifyFireIfCanExecute()
         {
             if (!cooldownCommand.CanExecute.Value) return;            
             if (GameServices.GameDataManager.NeedStopFire) return;
+
+            lookAt?.SetTarget(target.transform);
 
             cooldownCommand.Execute();
             MessageBroker.Default.Publish(new CombatArgs(this, configuration.Attack, target.GetComponent<Patrol>()));
