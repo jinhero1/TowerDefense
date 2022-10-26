@@ -35,6 +35,8 @@ namespace TowerDefense
         public void Return(Patrol pTarget)
         {
             pool.Return(pTarget);
+
+            GameServices.GameDataManager.RemoveEnemyData(pTarget.Id);
         }
     }
 }

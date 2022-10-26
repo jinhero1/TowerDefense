@@ -8,7 +8,6 @@ namespace TowerDefense
     {
         private TowerPool pool = null;
 
-        private int _range;
         private bool _isInPlaceableRange;
         private bool _isInOccupying;
 
@@ -27,10 +26,12 @@ namespace TowerDefense
             pool.ReturnAll();
         }
 
-        public void SetRange(TowerType pType, Transform pTarget)
+        public void SetTower(TowerType pType, SpriteRenderer pSpriteRenderer, Transform pRangeTransform)
         {
-            _range = GameServices.GameAssetManager.TowerConfigurations.GetRange(pType);
-            pTarget.localScale = new Vector3(_range, _range, pTarget.localScale.z);
+            TowerConfiguration configuration = GameServices.GameAssetManager.TowerConfigurations.GetConfiguration(pType);
+
+            pSpriteRenderer.sprite = configuration.Image;
+            pRangeTransform.localScale = new Vector3(configuration.Range, configuration.Range, pRangeTransform.localScale.z);
         }
 
         public bool CanPlace(Vector3Int pCellPosition)

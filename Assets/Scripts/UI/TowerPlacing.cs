@@ -6,12 +6,14 @@ namespace TowerDefense
     public class TowerPlacing : MonoBehaviour
     {
         [SerializeField] private GameObject dummyPlacement;
+        [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private SpriteRenderer range;
         [SerializeField] private Color legalColor;
         [SerializeField] private Color illegalColor;
 
         private readonly Vector3 initialPosition = new Vector3(-1000, -1000, 0);
 
+        private TowerType towerType;
         private Vector3Int cellPosition;
         private Vector3 cellWorldPosition;
 
@@ -30,7 +32,8 @@ namespace TowerDefense
         {
             SetActive(true);
 
-            GameServices.TowerController.SetRange(pArgs.TowerType, range.transform);
+            towerType = pArgs.TowerType;
+            GameServices.TowerController.SetTower(towerType, spriteRenderer, range.transform);
         }
 
         private void SetActive(bool pValue)
@@ -59,7 +62,6 @@ namespace TowerDefense
 
             if (GameServices.InputController.IsConfirmed())
             {
-                TowerType towerType = TowerType.Basic;
                 MessageBroker.Default.Publish(new ConfirmedTowerPositionArgs(towerType, cellPosition, cellWorldPosition));
 
                 SetActive(false);

@@ -23,7 +23,6 @@ namespace TowerDefense
 
             if (enemyData.IsDead.Value)
             {
-                GameServices.GameDataManager.RemoveEnemyData(enemyId);
                 GameServices.EnemyController.Return(pArgs.Enemy);
 
                 if (GameServices.GameDataManager.AreAllEnemiesDead())

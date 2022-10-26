@@ -31,10 +31,5 @@ namespace TowerDefense
         {
             return towers[(int)pType];
         }
-
-        public int GetRange(TowerType pType)
-        {
-            return GetConfiguration(pType).Range;
-        }
     }
 }

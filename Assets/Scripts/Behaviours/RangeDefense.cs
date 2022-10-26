@@ -25,8 +25,7 @@ namespace TowerDefense
         {
             configuration = pConfiguration;
 
-            spriteRenderer.sprite = pConfiguration.Image;
-            GameServices.TowerController.SetRange(pConfiguration.Type, range.transform);
+            GameServices.TowerController.SetTower(pConfiguration.Type, spriteRenderer, range.transform);
 
             cooldownCommand?.Dispose();
             cooldownCommand = new AsyncReactiveCommand();
