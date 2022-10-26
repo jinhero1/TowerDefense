@@ -7,6 +7,7 @@ namespace TowerDefense
     public class GameDataManager : IService
     {
         public PlayerData PlayerData { get; private set; }
+        public bool NeedStopFire { get; private set; }
 
         private List<Vector3Int> occupied = new List<Vector3Int>();
 
@@ -18,6 +19,7 @@ namespace TowerDefense
         {
             PlayerData = new PlayerData(pPlayerConfiguration.Money, pPlayerConfiguration.HP);
             occupied.Clear();
+            NeedStopFire = false;
         }
 
         public void Occupy(Vector3Int pCellPosition)
@@ -28,6 +30,11 @@ namespace TowerDefense
         public bool IsInOccupying(Vector3Int pCellPosition)
         {
             return occupied.Contains(pCellPosition);
+        }
+
+        public void StopFire()
+        {
+            NeedStopFire = true;
         }
     }
 }

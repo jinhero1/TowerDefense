@@ -41,7 +41,7 @@ namespace TowerDefense
 
             if (isEnterEvent)
             {
-                Fire();
+                ThrowFireCommandIfCanExecute();
             }
         }
 
@@ -49,12 +49,13 @@ namespace TowerDefense
         {
             if (target == null) return;
 
-            Fire();
+            ThrowFireCommandIfCanExecute();
         }
 
-        private void Fire()
+        private void ThrowFireCommandIfCanExecute()
         {
-            if (!waitingCommand.CanExecute.Value) return;
+            if (!waitingCommand.CanExecute.Value) return;            
+            if (GameServices.GameDataManager.NeedStopFire) return;
 
             waitingCommand.Execute();
             MessageBroker.Default.Publish(new CombatArgs(this, configuration.Attack, target.GetComponent<Patrol>()));

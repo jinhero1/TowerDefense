@@ -8,8 +8,7 @@ namespace TowerDefense
         private IDisposable disposable;
 
         private void Awake()
-        {
-            MessageBroker.Default.Receive<CombatArgs>().Subscribe(OnCombat);
+        {            
             MessageBroker.Default.Receive<PatrolArrivalDestinationArgs>().Subscribe(OnPatrolArrivalDestination);
         }
 
@@ -23,11 +22,6 @@ namespace TowerDefense
 
                 Next();
             });
-        }
-
-        private void OnCombat(CombatArgs pArgs)
-        {
-            UnityEngine.Debug.Log($"{pArgs.Tower} attack {pArgs.Enemy}");
         }
 
         private void OnPatrolArrivalDestination(PatrolArrivalDestinationArgs pArgs)
