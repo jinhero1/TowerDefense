@@ -26,11 +26,10 @@ namespace TowerDefense
 
         private void OnSpawnEnemy(SpawnEnemyArgs pArgs)
         {
-            EnemyConfiguration configuration = GameServices.GameAssetManager.EnemyConfigurations.GetConfiguration(pArgs.EnemyType);
+            Patrol unit = pool.Rent();
+            unit.SetData(++enemyId, GameServices.GameAssetManager.EnemyConfigurations.GetConfiguration(pArgs.EnemyType));
 
-            Patrol patrol = pool.Rent();
-            patrol.SetData(++enemyId, configuration);
-            GameServices.GameDataManager.CreateEnemyData(patrol.Id, patrol.Configuration.HP);
+            GameServices.GameDataManager.CreateEnemyData(unit.Id, unit.Configuration.HP);
         }
 
         public void Return(Patrol pTarget)

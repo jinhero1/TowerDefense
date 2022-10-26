@@ -8,6 +8,7 @@ namespace TowerDefense
 {
     public class RangeDefense : MonoBehaviour
     {
+        [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private string targetTag;
         [SerializeField] private CollisionDetector range;
 
@@ -24,6 +25,7 @@ namespace TowerDefense
         {
             configuration = pConfiguration;
 
+            spriteRenderer.sprite = pConfiguration.Image;
             GameServices.TowerController.SetRange(pConfiguration.Type, range.transform);
 
             cooldownCommand?.Dispose();

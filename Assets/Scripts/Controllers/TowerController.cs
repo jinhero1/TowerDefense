@@ -19,9 +19,7 @@ namespace TowerDefense
 
         public void Prepare()
         {
-            TowerType type = TowerType.Basic;
-            TowerConfiguration configuration = GameServices.GameAssetManager.TowerConfigurations.GetConfiguration(type);
-            pool = new TowerPool(configuration);
+            pool = new TowerPool(GameServices.GameAssetManager.TowerConfigurations.Prefab);
         }
 
         public void Reset()

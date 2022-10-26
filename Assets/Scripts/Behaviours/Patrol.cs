@@ -19,6 +19,7 @@ namespace TowerDefense
         {
             Id = pId;
             Configuration = pConfiguration;
+
             spriteRenderer.sprite = pConfiguration.Image;
         }
 

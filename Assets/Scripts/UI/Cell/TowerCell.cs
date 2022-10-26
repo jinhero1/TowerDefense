@@ -15,7 +15,7 @@ namespace TowerDefense
             MessageBroker.Default.Receive<GameAssetReadyArgs>().Subscribe(_ =>
             {
                 TowerConfiguration configuration = GameServices.GameAssetManager.TowerConfigurations.GetConfiguration(towerType);
-                image.sprite = configuration.Icon;
+                image.sprite = configuration.Image;
             });
             button.OnClickAsObservable().Subscribe(_ =>
             {

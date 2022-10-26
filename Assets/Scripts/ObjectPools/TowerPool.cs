@@ -1,13 +1,11 @@
-using Library;
+using UnityEngine;
+
 namespace TowerDefense
 {
     public class TowerPool : BasePool<RangeDefense>
     {
-        private TowerConfiguration configuration;
-
-        public TowerPool(TowerConfiguration pConfiguration) : base(pConfiguration.Prefab)
+        public TowerPool(GameObject pPrefab) : base(pPrefab)
         {
-            configuration = pConfiguration;
         }
 
         protected override void OnCreatedInstance(RangeDefense pInstance)

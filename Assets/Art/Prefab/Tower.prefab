@@ -184,7 +184,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 2539138467979641940, guid: b7b7bfd0ab6424bf1b4a12b51fc69087, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -192,7 +192,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1.0003755}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &7754827392084288076
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 7754827392084288079}
   - component: {fileID: 7053440563999588462}
   m_Layer: 0
-  m_Name: GreenTower
+  m_Name: Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -239,5 +239,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ea33aa5c2c749bab8198202289d872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 7754827391770574339}
   targetTag: Enemy
   range: {fileID: 4024852628444830062}
