@@ -19,7 +19,7 @@ Create a PC Tower Defense game using Unity and C#.
 - You can see enemies disappear when the tower kills them.
 
 ## Self-made Library
-[Library](Assets/Pro%20Standard%20Assets/Library)
+[Library](Assets/Pro%20Standard%20Assets/Library) for every kind of game used.
 
 ## Internal Packages
 2D Sprite\
