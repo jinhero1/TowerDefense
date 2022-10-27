@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Library;
 using UniRx;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ namespace TowerDefense
     public class RangeDefense : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer spriteRenderer;
-        [SerializeField] private string targetTag;
+        [SerializeField] private LayerMask targetLayer;
         [SerializeField] private CollisionDetector range;
         [SerializeField] private LookAtTarget lookAt;
         [SerializeField] private Flash muzzleFlash;
@@ -35,7 +36,7 @@ namespace TowerDefense
 
         private void OnTargetChanged(IEnumerable<GameObject> pEnumerable, bool isEnterEvent)
         {
-            target = pEnumerable.Where(x => x.tag == targetTag).FirstOrDefault();
+            target = pEnumerable.Where(x => LayerMaskUtility.IsInLayer(x.layer, targetLayer)).FirstOrDefault();
 
             if (isEnterEvent)
             {

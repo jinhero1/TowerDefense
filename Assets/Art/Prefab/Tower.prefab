@@ -94,9 +94,9 @@ GameObject:
   - component: {fileID: 4024852628444830062}
   - component: {fileID: 7846145586258134095}
   - component: {fileID: 5146304370276708383}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Range
-  m_TagString: Tower
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -452,6 +452,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 7754827391770574339}
   targetTag: Enemy
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 128
   range: {fileID: 4024852628444830062}
   lookAt: {fileID: 6914003795118018788}
   muzzleFlash: {fileID: 980535573972214019}
