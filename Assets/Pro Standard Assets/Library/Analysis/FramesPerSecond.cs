@@ -15,15 +15,15 @@ namespace Library
 
         void Update()
         {
-            frames++;
-            timer += Time.deltaTime;
-
             if (timer >= INTERVAL_TIME)
             {
                 text.text = frames.ToString();
                 frames = ZERO;
                 timer -= INTERVAL_TIME;
             }
+
+            frames++;
+            timer += Time.deltaTime;
         }
     }
 }
