@@ -1,6 +1,27 @@
 # Tower Defense
 Create a PC Tower Defense game using Unity and C#.
 
+## Codes
+Readable
+- Keep each file under 100 lines and single responsibility.
+
+Understandable
+- All services are created under the [GameServices](Assets/Scripts/Services/GameServices.cs).
+
+Maintainable
+- Keep [controllers](Assets/Scripts/Controllers) write data, and [UI](Assets/Scripts/UI) only reads data.
+- Game-related configurations implemented by [ScriptableObjects](Assets/Scripts/ScriptableObjects).
+- Split [CollisionDetector](Assets/Scripts/Physics) for other objects are easy to apply.
+
+Extendable
+- All unit [behaviors](Assets/Scripts/Behaviours) are split into different parts. (favor composition over inheritance)
+
+Testable
+- Don't use the Singleton pattern, use the [ServiceLocator](Assets/Pro%20Standard%20Assets/Library/Service) pattern instead of, letting the classes lifecycle can be controlled.
+
+Performance
+- [Object pool mechanic](Assets/Scripts/ObjectPools) to reduce unnecessary Instantiate/Destroy.
+
 ## Implementations
 - A gameplay [scene](Assets/Scene)
 - Simple [map](Assets/Resources/Map) with 2D Tilemap system and Tower Defense Pack.
