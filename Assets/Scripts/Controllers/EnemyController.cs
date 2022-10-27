@@ -11,6 +11,7 @@ namespace TowerDefense
         public void Initialize()
         {
             MessageBroker.Default.Receive<SpawnEnemyArgs>().Subscribe(OnSpawnEnemy);
+            MessageBroker.Default.Receive<DespawnEnemyArgs>().Subscribe(OnDespawnEnemy);
         }
 
         public void Prepare()
@@ -32,11 +33,11 @@ namespace TowerDefense
             GameServices.GameDataManager.CreateEnemyData(unit.Id, unit.Configuration.HP);
         }
 
-        public void Return(Patrol pTarget)
+        private void OnDespawnEnemy(DespawnEnemyArgs pArgs)
         {
-            pool.Return(pTarget);
+            pool.Return(pArgs.Target);
 
-            GameServices.GameDataManager.RemoveEnemyData(pTarget.Id);
+            GameServices.GameDataManager.RemoveEnemyData(pArgs.Target.Id);
             // All enemies dead or no enemies
             if (GameServices.GameDataManager.AreAllEnemiesDead())
             {

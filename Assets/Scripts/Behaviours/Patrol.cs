@@ -58,7 +58,7 @@ namespace TowerDefense
 
         private void OnArrivalDestination()
         {
-            GameServices.EnemyController.Return(this);
+            MessageBroker.Default.Publish(new DespawnEnemyArgs(this));
             MessageBroker.Default.Publish(new PatrolArrivalDestinationArgs(Configuration.Type));
         }
 

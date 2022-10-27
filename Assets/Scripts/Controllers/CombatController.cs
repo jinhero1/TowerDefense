@@ -24,7 +24,7 @@ namespace TowerDefense
 
             if (enemyData.IsDead.Value)
             {
-                GameServices.EnemyController.Return(pArgs.Enemy);
+                MessageBroker.Default.Publish(new DespawnEnemyArgs(pArgs.Enemy));
             }
         }
 
