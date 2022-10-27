@@ -2,6 +2,12 @@
 Create a PC Tower Defense game using Unity and C#.
 
 ## Implementations
+- A gameplay [scene](Assets/Scene)
+- Simple [map](Assets/Resources/Map) with 2D Tilemap system and Tower Defense Pack.
+- Simple [state flows](Assets/Scripts/States): InitializeState, ResetState, IdleState, OverState.
+- Simple [game configurations](Assets/Resources/Asset): Tower, Enemy, Wave, Map, Player.
+- Simple [tower placing mechanic](Assets/Scripts/UI/TowerPlacing.cs) with visual assistance.
+- Simple [game over script](Assets/Scripts/UI/GameResultUI.cs)
 
 ## Assumptions
 - You are using the 1920x1080 or any 16:9 aspect device, it’s not a good experience for the 16:10 aspect.
