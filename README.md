@@ -1,9 +1,8 @@
 # Tower Defense
 Create a PC Tower Defense game using Unity and C#.
 
-## Self-written Library
-AssetLoader\
-ServiceLocator
+## Self-made Library
+[Library](Assets/Pro%20Standard%20Assets/Library)
 
 ## Internal Packages
 2D Sprite\
