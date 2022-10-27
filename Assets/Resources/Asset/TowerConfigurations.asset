@@ -23,6 +23,6 @@ MonoBehaviour:
   - type: 1
     range: 4
     waitingTime: 2
-    attack: 3
+    attack: 4
     image: {fileID: -1062004411004075294, guid: b7b7bfd0ab6424bf1b4a12b51fc69087, type: 3}
     muzzleFlashType: 1
