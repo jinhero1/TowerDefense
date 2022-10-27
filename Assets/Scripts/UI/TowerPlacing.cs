@@ -33,7 +33,7 @@ namespace TowerDefense
             SetActive(true);
 
             towerType = pArgs.TowerType;
-            GameServices.TowerController.SetTower(towerType, spriteRenderer, range.transform);
+            GameServices.TowerController.ChangeTower(towerType, spriteRenderer, range.transform);
         }
 
         private void SetActive(bool pValue)

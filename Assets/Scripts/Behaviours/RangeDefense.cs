@@ -27,7 +27,7 @@ namespace TowerDefense
         {
             configuration = pConfiguration;
 
-            GameServices.TowerController.SetTower(pConfiguration.Type, spriteRenderer, range.transform);
+            GameServices.TowerController.ChangeTower(pConfiguration.Type, spriteRenderer, range.transform);
             muzzleFlash?.SetData(pConfiguration.MuzzleFlashType);
 
             cooldownCommand?.Dispose();

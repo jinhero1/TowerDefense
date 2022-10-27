@@ -26,7 +26,7 @@ namespace TowerDefense
             pool.ReturnAll();
         }
 
-        public void SetTower(TowerType pType, SpriteRenderer pSpriteRenderer, Transform pRangeTransform)
+        public void ChangeTower(TowerType pType, SpriteRenderer pSpriteRenderer, Transform pRangeTransform)
         {
             TowerConfiguration configuration = GameServices.GameAssetManager.TowerConfigurations.GetConfiguration(pType);
 
