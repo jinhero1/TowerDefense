@@ -16,7 +16,7 @@ namespace Library
         void Update()
         {
             frames++;
-            timer += Time.unscaledDeltaTime;
+            timer += Time.deltaTime;
 
             if (timer >= INTERVAL_TIME)
             {
