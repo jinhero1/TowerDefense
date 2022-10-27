@@ -8,8 +8,7 @@ namespace TowerDefense
         private IDisposable disposable;
 
         private void Awake()
-        {            
-            MessageBroker.Default.Receive<PatrolArrivalDestinationArgs>().Subscribe(OnPatrolArrivalDestination);
+        {
             MessageBroker.Default.Receive<NoNextWaveArgs>().Subscribe(_ =>
             {
                 Next();
@@ -26,12 +25,6 @@ namespace TowerDefense
 
                 Next();
             });
-        }
-
-        private void OnPatrolArrivalDestination(PatrolArrivalDestinationArgs pArgs)
-        {
-            EnemyConfiguration configuration = GameServices.GameAssetManager.EnemyConfigurations.GetConfiguration(pArgs.EnemyType);
-            GameServices.GameDataManager.PlayerData.HP.Value -= configuration.Attack;
         }
     }
 }

@@ -8,6 +8,7 @@ namespace TowerDefense
         public void Initialize()
         {
             MessageBroker.Default.Receive<CombatArgs>().Subscribe(OnCombat);
+            MessageBroker.Default.Receive<PatrolArrivalDestinationArgs>().Subscribe(OnPatrolArrivalDestination);
             MessageBroker.Default.Receive<GameResultArgs>().Subscribe(_ =>
             {
                 GameServices.GameDataManager.SetStopFireFlag();
@@ -25,6 +26,12 @@ namespace TowerDefense
             {
                 GameServices.EnemyController.Return(pArgs.Enemy);
             }
+        }
+
+        private void OnPatrolArrivalDestination(PatrolArrivalDestinationArgs pArgs)
+        {
+            EnemyConfiguration configuration = GameServices.GameAssetManager.EnemyConfigurations.GetConfiguration(pArgs.EnemyType);
+            GameServices.GameDataManager.PlayerData.HP.Value -= configuration.Attack;
         }
     }
 }
