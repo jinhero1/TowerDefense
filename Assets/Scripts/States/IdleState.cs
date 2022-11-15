@@ -9,9 +9,12 @@ namespace TowerDefense
 
         private void Awake()
         {
-            MessageBroker.Default.Receive<NoNextWaveArgs>().Subscribe(_ =>
+            MessageBroker.Default.Receive<NextWaveArgs>().Subscribe(x =>
             {
-                Next();
+                if (x.IsOverMax)
+                {
+                    Next();
+                }
             });
         }
 

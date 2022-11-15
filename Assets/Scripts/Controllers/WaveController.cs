@@ -26,7 +26,7 @@ namespace TowerDefense
         {
             if (cooldownCommand == null)
             {
-                float intervalTime = GameServices.GameAssetManager.WaveConfigurations.IntervalTime;
+                float intervalTime = GameServices.GameAssetManager.WaveConfigurations.IntervalTime;                
                 cooldownCommand = AsyncReactiveCommandUtility.Create(intervalTime, OnCountdownFinished);
             }
         }
@@ -42,9 +42,11 @@ namespace TowerDefense
 
         private void OnNextWave()
         {
-            if (GameServices.GameDataManager.WaveData.IsOverMax())
+            bool isOverMax = GameServices.GameDataManager.WaveData.IsOverMax();
+            MessageBroker.Default.Publish(new NextWaveArgs(isOverMax));
+
+            if (isOverMax)
             {
-                MessageBroker.Default.Publish(new NoNextWaveArgs());
                 return;
             }
 

@@ -9,6 +9,11 @@ namespace TowerDefense
     {
         [SerializeField] private EnemyType[] enemyTypes;
 
+        public int GetEnemyCount()
+        {
+            return enemyTypes.Length;
+        }
+
         public Queue<EnemyType> GetEnemyQueue()
         {
             return new Queue<EnemyType>(enemyTypes);
@@ -33,6 +38,23 @@ namespace TowerDefense
         public int GetMaxWave()
         {
             return waves.Length;
+        }
+
+        public int GetMaxEnemyCount()
+        {
+            int maxEnemyCount = 0;
+            int _enemyCount;
+
+            for (int i = 0; i < waves.Length; i++)
+            {
+                _enemyCount = waves[i].GetEnemyCount();
+                if (_enemyCount > maxEnemyCount)
+                {
+                    maxEnemyCount = _enemyCount;
+                }
+            }
+
+            return maxEnemyCount;
         }
     }
 }

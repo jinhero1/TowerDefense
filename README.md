@@ -39,6 +39,7 @@ Testable
 
 Performance
 - [Object pool mechanic](Assets/Scripts/ObjectPools) to reduce unnecessary Instantiate/Destroy.
+- [Job system](Assets/Scripts/Jobs) to split update job to worker thread, let job speed improvements 10x in 500 enemy units situation.
 
 ## Self-made Library
 [Library](Assets/Pro%20Standard%20Assets/Library) for every kind of game used.
@@ -46,6 +47,7 @@ Performance
 ## Internal Packages
 2D Sprite\
 2D Tilemap Editor
+Burst
 
 ## External Packages
 [Tower Defense (top-down) Pack](https://opengameart.org/content/tower-defense-300-tilessprites)\

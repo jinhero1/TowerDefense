@@ -1,3 +1,4 @@
+using System;
 using Library;
 using UniRx;
 using UnityEngine;
@@ -13,9 +14,28 @@ namespace TowerDefense
         private int pointIndex;
         private float currentAngle;
         private Vector3 nextPosition;
+        private IDisposable subscriber;
 
         public int Id { get; private set; }
         public EnemyConfiguration Configuration { get; private set; }
+
+        void Awake()
+        {
+            subscriber = MessageBroker.Default.Receive<PatrolArrivalNextPositionArgs>().Subscribe(OnPatrolArrivalNextPosition);
+        }
+
+        void OnDestroy()
+        {
+            subscriber.Dispose();
+        }
+
+        private void OnPatrolArrivalNextPosition(PatrolArrivalNextPositionArgs pArgs)
+        {
+            if (Id == pArgs.Id)
+            {
+                ChangeNextPositionIfNeeded();
+            }
+        }
 
         public void SetData(int pId, EnemyConfiguration pConfiguration)
         {
@@ -23,14 +43,14 @@ namespace TowerDefense
             Configuration = pConfiguration;
 
             spriteRenderer.sprite = pConfiguration.Image;
+
+            ChangeNextPositionIfNeeded();
         }
 
         private void OnEnable()
         {
             pointIndex = ZERO;
             this.transform.position = GetPosition(pointIndex);
-
-            ChangeNextPositionIfNeeded();
         }
 
         private Vector3 GetPosition(int pIndex)
@@ -49,6 +69,8 @@ namespace TowerDefense
             {
                 nextPosition = GetPosition(pointIndex);
                 TransformUtility.SetAngle(this.transform, currentAngle);
+
+                MessageBroker.Default.Publish(new PatrolPositionArgs(Id, this.transform, Configuration.Speed, nextPosition));
             }
             else
             {
@@ -60,18 +82,6 @@ namespace TowerDefense
         {
             MessageBroker.Default.Publish(new DespawnEnemyArgs(this));
             MessageBroker.Default.Publish(new PatrolArrivalDestinationArgs(Configuration.Type));
-        }
-
-        private void Update()
-        {
-            if (Configuration == null) return;
-
-            this.transform.position = Vector2.MoveTowards(this.transform.position, nextPosition, Configuration.Speed * Time.deltaTime);
-
-            if (Vector2.Distance(this.transform.position, nextPosition) == ZERO)
-            {
-                ChangeNextPositionIfNeeded();
-            }
         }
     }
 }

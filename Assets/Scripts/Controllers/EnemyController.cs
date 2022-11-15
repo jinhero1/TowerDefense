@@ -10,6 +10,13 @@ namespace TowerDefense
 
         public void Initialize()
         {
+            MessageBroker.Default.Receive<NextWaveArgs>().Subscribe(x =>
+            {
+                if (!x.IsOverMax)
+                {
+                    OnNextWave();
+                }
+            });
             MessageBroker.Default.Receive<SpawnEnemyArgs>().Subscribe(OnSpawnEnemy);
             MessageBroker.Default.Receive<DespawnEnemyArgs>().Subscribe(OnDespawnEnemy);
         }
@@ -22,6 +29,11 @@ namespace TowerDefense
         public void Reset()
         {
             pool.ReturnAll();
+            enemyId = 0;
+        }
+
+        private void OnNextWave()
+        {
             enemyId = 0;
         }
 
