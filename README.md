@@ -46,7 +46,7 @@ Performance
 
 ## Internal Packages
 2D Sprite\
-2D Tilemap Editor
+2D Tilemap Editor\
 Burst
 
 ## External Packages
